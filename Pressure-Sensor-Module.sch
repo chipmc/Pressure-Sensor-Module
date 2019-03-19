@@ -3401,12 +3401,12 @@ This setting can be found in the board layout editor under the Edit menu.  Selec
 <circle x="5.842" y="9.144" radius="0.5679" width="0.254" layer="94"/>
 <circle x="4.826" y="3.048" radius="0.5679" width="0.254" layer="94"/>
 <circle x="6.858" y="3.048" radius="0.5679" width="0.254" layer="94"/>
-<pin name="VPP/MCLR" x="-12.7" y="7.62" length="short" direction="pas"/>
-<pin name="VDD" x="-12.7" y="5.08" length="short" direction="pwr"/>
-<pin name="VSS(GND)" x="-12.7" y="2.54" length="short" direction="pwr"/>
-<pin name="ICSP_DAT/PGD" x="-12.7" y="0" length="short"/>
-<pin name="ICSP_CLK/PGC" x="-12.7" y="-2.54" length="short" direction="out"/>
-<pin name="LVP" x="-12.7" y="-5.08" length="short"/>
+<pin name="MISO" x="-12.7" y="7.62" length="short" direction="pas"/>
+<pin name="VCC" x="-12.7" y="5.08" length="short" direction="pwr"/>
+<pin name="SCK" x="-12.7" y="2.54" length="short" direction="pwr"/>
+<pin name="MOSI" x="-12.7" y="0" length="short"/>
+<pin name="!RESET" x="-12.7" y="-2.54" length="short" direction="out"/>
+<pin name="GND" x="-12.7" y="-5.08" length="short"/>
 <polygon width="0.254" layer="94">
 <vertex x="6.096" y="7.62" curve="-90"/>
 <vertex x="6.604" y="8.128" curve="-90"/>
@@ -3472,12 +3472,12 @@ Two variants - one "with legs" (for hands-free fit on PCB) and another "without 
 <devices>
 <device name="-MCP" package="TC2030-MCP">
 <connects>
-<connect gate="G$1" pin="ICSP_CLK/PGC" pad="5"/>
-<connect gate="G$1" pin="ICSP_DAT/PGD" pad="4"/>
-<connect gate="G$1" pin="LVP" pad="6"/>
-<connect gate="G$1" pin="VDD" pad="2"/>
-<connect gate="G$1" pin="VPP/MCLR" pad="1"/>
-<connect gate="G$1" pin="VSS(GND)" pad="3"/>
+<connect gate="G$1" pin="!RESET" pad="5"/>
+<connect gate="G$1" pin="GND" pad="6"/>
+<connect gate="G$1" pin="MISO" pad="1"/>
+<connect gate="G$1" pin="MOSI" pad="4"/>
+<connect gate="G$1" pin="SCK" pad="3"/>
+<connect gate="G$1" pin="VCC" pad="2"/>
 </connects>
 <technologies>
 <technology name=""/>
@@ -3485,12 +3485,12 @@ Two variants - one "with legs" (for hands-free fit on PCB) and another "without 
 </device>
 <device name="-MCP-NL" package="TC2030-MCP-NL">
 <connects>
-<connect gate="G$1" pin="ICSP_CLK/PGC" pad="5"/>
-<connect gate="G$1" pin="ICSP_DAT/PGD" pad="4"/>
-<connect gate="G$1" pin="LVP" pad="6"/>
-<connect gate="G$1" pin="VDD" pad="2"/>
-<connect gate="G$1" pin="VPP/MCLR" pad="1"/>
-<connect gate="G$1" pin="VSS(GND)" pad="3"/>
+<connect gate="G$1" pin="!RESET" pad="5"/>
+<connect gate="G$1" pin="GND" pad="6"/>
+<connect gate="G$1" pin="MISO" pad="1"/>
+<connect gate="G$1" pin="MOSI" pad="4"/>
+<connect gate="G$1" pin="SCK" pad="3"/>
+<connect gate="G$1" pin="VCC" pad="2"/>
 </connects>
 <technologies>
 <technology name=""/>
@@ -3498,13 +3498,47 @@ Two variants - one "with legs" (for hands-free fit on PCB) and another "without 
 </device>
 <device name="" package="TC2030-MCP-NL-CP">
 <connects>
-<connect gate="G$1" pin="ICSP_CLK/PGC" pad="5"/>
-<connect gate="G$1" pin="ICSP_DAT/PGD" pad="4"/>
-<connect gate="G$1" pin="LVP" pad="6"/>
-<connect gate="G$1" pin="VDD" pad="2"/>
-<connect gate="G$1" pin="VPP/MCLR" pad="1"/>
-<connect gate="G$1" pin="VSS(GND)" pad="3"/>
+<connect gate="G$1" pin="!RESET" pad="5"/>
+<connect gate="G$1" pin="GND" pad="6"/>
+<connect gate="G$1" pin="MISO" pad="1"/>
+<connect gate="G$1" pin="MOSI" pad="4"/>
+<connect gate="G$1" pin="SCK" pad="3"/>
+<connect gate="G$1" pin="VCC" pad="2"/>
 </connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+</devicesets>
+</library>
+<library name="supply1" urn="urn:adsk.eagle:library:371">
+<description>&lt;b&gt;Supply Symbols&lt;/b&gt;&lt;p&gt;
+ GND, VCC, 0V, +5V, -5V, etc.&lt;p&gt;
+ Please keep in mind, that these devices are necessary for the
+ automatic wiring of the supply signals.&lt;p&gt;
+ The pin name defined in the symbol is identical to the net which is to be wired automatically.&lt;p&gt;
+ In this library the device names are the same as the pin names of the symbols, therefore the correct signal names appear next to the supply symbols in the schematic.&lt;p&gt;
+ &lt;author&gt;Created by librarian@cadsoft.de&lt;/author&gt;</description>
+<packages>
+</packages>
+<symbols>
+<symbol name="+3V3" urn="urn:adsk.eagle:symbol:26950/1" library_version="1">
+<wire x1="1.27" y1="-1.905" x2="0" y2="0" width="0.254" layer="94"/>
+<wire x1="0" y1="0" x2="-1.27" y2="-1.905" width="0.254" layer="94"/>
+<text x="-2.54" y="-5.08" size="1.778" layer="96" rot="R90">&gt;VALUE</text>
+<pin name="+3V3" x="0" y="-2.54" visible="off" length="short" direction="sup" rot="R90"/>
+</symbol>
+</symbols>
+<devicesets>
+<deviceset name="+3V3" urn="urn:adsk.eagle:component:26981/1" prefix="+3V3" library_version="1">
+<description>&lt;b&gt;SUPPLY SYMBOL&lt;/b&gt;</description>
+<gates>
+<gate name="G$1" symbol="+3V3" x="0" y="0"/>
+</gates>
+<devices>
+<device name="">
 <technologies>
 <technology name=""/>
 </technologies>
@@ -3547,11 +3581,24 @@ Two variants - one "with legs" (for hands-free fit on PCB) and another "without 
 <part name="LED1" library="adafruit" deviceset="LED" device="CHIP-LED0805"/>
 <part name="R2" library="SparkFun-Resistors" deviceset="0.3OHM" device="-0805-1/8W-1%" value="1k"/>
 <part name="R3" library="SparkFun-Resistors" deviceset="0.3OHM" device="-0805-1/8W-1%" value="100k"/>
-<part name="ICSP" library="tag-connect" deviceset="TC2030" device=""/>
+<part name="ICSP" library="tag-connect" deviceset="TC2030" device="-MCP-NL"/>
+<part name="R4" library="SparkFun-Resistors" deviceset="0.3OHM" device="-0805-1/8W-1%" value="1k"/>
+<part name="R5" library="SparkFun-Resistors" deviceset="0.3OHM" device="-0805-1/8W-1%" value="1k"/>
+<part name="C2" library="SparkFun-Capacitors" deviceset="1.0UF" device="-0805-25V-10%" value="1uF"/>
+<part name="C3" library="SparkFun-Capacitors" deviceset="1.0UF" device="-0805-25V-10%" value="0.01uF"/>
+<part name="C4" library="SparkFun-Capacitors" deviceset="1.0UF" device="-0805-25V-10%" value="0.33uF"/>
+<part name="C5" library="SparkFun-Capacitors" deviceset="1.0UF" device="-0805-25V-10%" value="0.1uF"/>
+<part name="C6" library="SparkFun-Capacitors" deviceset="1.0UF" device="-0805-25V-10%" value="0.1uF"/>
+<part name="GND3" library="SparkFun" deviceset="GND" device=""/>
+<part name="SUPPLY5" library="SparkFun-PowerSymbols" deviceset="VCC" device=""/>
+<part name="+3V1" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="+3V3" device=""/>
+<part name="R6" library="SparkFun-Resistors" deviceset="0.3OHM" device="-0805-1/8W-1%" value="750"/>
+<part name="+3V2" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="+3V3" device=""/>
 </parts>
 <sheets>
 <sheet>
 <plain>
+<text x="35.56" y="88.9" size="1.778" layer="91">Low Pass filter recommended by AN-1646</text>
 </plain>
 <instances>
 <instance part="FRAME1" gate="G$1" x="0" y="0" smashed="yes"/>
@@ -3570,8 +3617,8 @@ Two variants - one "with legs" (for hands-free fit on PCB) and another "without 
 <instance part="SUPPLY1" gate="G$1" x="127" y="116.84" smashed="yes">
 <attribute name="VALUE" x="127" y="119.634" size="1.778" layer="96" align="bottom-center"/>
 </instance>
-<instance part="SUPPLY2" gate="G$1" x="193.04" y="121.92" smashed="yes">
-<attribute name="VALUE" x="193.04" y="124.714" size="1.778" layer="96" align="bottom-center"/>
+<instance part="SUPPLY2" gate="G$1" x="213.36" y="121.92" smashed="yes">
+<attribute name="VALUE" x="213.36" y="124.714" size="1.778" layer="96" align="bottom-center"/>
 </instance>
 <instance part="GND1" gate="1" x="205.74" y="83.82" smashed="yes">
 <attribute name="VALUE" x="203.2" y="81.28" size="1.778" layer="96"/>
@@ -3582,32 +3629,32 @@ Two variants - one "with legs" (for hands-free fit on PCB) and another "without 
 </instance>
 <instance part="RESET" gate="G$1" x="162.56" y="86.36" smashed="yes">
 <attribute name="NAME" x="162.56" y="87.884" size="1.778" layer="95" font="vector" align="bottom-center"/>
-<attribute name="VALUE" x="162.56" y="85.852" size="1.778" layer="96" font="vector" align="top-center"/>
+<attribute name="VALUE" x="162.56" y="83.312" size="1.778" layer="96" font="vector" align="top-center"/>
 </instance>
-<instance part="POWER-SWITCH" gate="G$1" x="142.24" y="132.08" smashed="yes">
-<attribute name="NAME" x="134.62" y="139.7" size="1.27" layer="95"/>
-<attribute name="VALUE" x="134.62" y="121.92" size="1.27" layer="96"/>
+<instance part="POWER-SWITCH" gate="G$1" x="116.84" y="144.78" smashed="yes">
+<attribute name="NAME" x="109.22" y="152.4" size="1.27" layer="95"/>
+<attribute name="VALUE" x="109.22" y="134.62" size="1.27" layer="96"/>
 </instance>
-<instance part="SUPPLY3" gate="G$1" x="157.48" y="137.16" smashed="yes">
-<attribute name="VALUE" x="157.48" y="139.954" size="1.778" layer="96" align="bottom-center"/>
+<instance part="SUPPLY3" gate="G$1" x="132.08" y="154.94" smashed="yes">
+<attribute name="VALUE" x="132.08" y="157.734" size="1.778" layer="96" align="bottom-center"/>
 </instance>
 <instance part="HEADER" gate="G$1" x="190.5" y="139.7" smashed="yes">
 <attribute name="NAME" x="186.944" y="145.288" size="1.778" layer="95" font="vector"/>
 <attribute name="VALUE" x="187.198" y="133.858" size="1.778" layer="96" font="vector" align="top-left"/>
 </instance>
-<instance part="R1" gate="G$1" x="121.92" y="127" smashed="yes">
-<attribute name="NAME" x="121.92" y="128.524" size="1.778" layer="95" font="vector" align="bottom-center"/>
-<attribute name="VALUE" x="121.92" y="125.476" size="1.778" layer="96" font="vector" align="top-center"/>
+<instance part="R1" gate="G$1" x="96.52" y="139.7" smashed="yes">
+<attribute name="NAME" x="96.52" y="141.224" size="1.778" layer="95" font="vector" align="bottom-center"/>
+<attribute name="VALUE" x="96.52" y="138.176" size="1.778" layer="96" font="vector" align="top-center"/>
 </instance>
-<instance part="PRESSURE-SENSOR" gate="G$1" x="68.58" y="111.76" smashed="yes">
-<attribute name="NAME" x="60.96" y="127" size="1.778" layer="95"/>
-<attribute name="VALUE" x="60.96" y="93.98" size="1.778" layer="96"/>
+<instance part="PRESSURE-SENSOR" gate="G$1" x="88.9" y="111.76" smashed="yes">
+<attribute name="NAME" x="81.28" y="127" size="1.778" layer="95"/>
+<attribute name="VALUE" x="81.28" y="93.98" size="1.778" layer="96"/>
 </instance>
-<instance part="SUPPLY4" gate="G$1" x="40.64" y="124.46" smashed="yes">
-<attribute name="VALUE" x="40.64" y="127.254" size="1.778" layer="96" align="bottom-center"/>
+<instance part="SUPPLY4" gate="G$1" x="30.48" y="124.46" smashed="yes">
+<attribute name="VALUE" x="30.48" y="127.254" size="1.778" layer="96" align="bottom-center"/>
 </instance>
-<instance part="GND4" gate="1" x="40.64" y="91.44" smashed="yes">
-<attribute name="VALUE" x="38.1" y="88.9" size="1.778" layer="96"/>
+<instance part="GND4" gate="1" x="30.48" y="86.36" smashed="yes">
+<attribute name="VALUE" x="27.94" y="83.82" size="1.778" layer="96"/>
 </instance>
 <instance part="FD1" gate="G$1" x="116.84" y="5.08" smashed="yes"/>
 <instance part="FD2" gate="G$1" x="121.92" y="5.08" smashed="yes"/>
@@ -3615,19 +3662,63 @@ Two variants - one "with legs" (for hands-free fit on PCB) and another "without 
 <instance part="JP3" gate="G$1" x="127" y="5.08" smashed="yes"/>
 <instance part="JP4" gate="G$1" x="132.08" y="5.08" smashed="yes"/>
 <instance part="JP6" gate="G$1" x="142.24" y="5.08" smashed="yes"/>
-<instance part="LED1" gate="G$1" x="175.26" y="129.54" smashed="yes" rot="R270">
-<attribute name="NAME" x="170.688" y="125.984" size="1.778" layer="95"/>
-<attribute name="VALUE" x="170.688" y="123.825" size="1.778" layer="96"/>
+<instance part="LED1" gate="G$1" x="193.04" y="129.54" smashed="yes" rot="R270">
+<attribute name="NAME" x="188.468" y="125.984" size="1.778" layer="95"/>
+<attribute name="VALUE" x="188.468" y="123.825" size="1.778" layer="96"/>
 </instance>
-<instance part="R2" gate="G$1" x="185.42" y="129.54" smashed="yes">
-<attribute name="NAME" x="185.42" y="131.064" size="1.778" layer="95" font="vector" align="bottom-center"/>
-<attribute name="VALUE" x="185.42" y="128.016" size="1.778" layer="96" font="vector" align="top-center"/>
+<instance part="R2" gate="G$1" x="203.2" y="129.54" smashed="yes">
+<attribute name="NAME" x="203.2" y="131.064" size="1.778" layer="95" font="vector" align="bottom-center"/>
+<attribute name="VALUE" x="203.2" y="128.016" size="1.778" layer="96" font="vector" align="top-center"/>
 </instance>
-<instance part="R3" gate="G$1" x="200.66" y="114.3" smashed="yes" rot="R90">
-<attribute name="NAME" x="199.136" y="114.3" size="1.778" layer="95" font="vector" rot="R90" align="bottom-center"/>
-<attribute name="VALUE" x="202.184" y="114.3" size="1.778" layer="96" font="vector" rot="R90" align="top-center"/>
+<instance part="R3" gate="G$1" x="203.2" y="111.76" smashed="yes" rot="R90">
+<attribute name="NAME" x="201.676" y="111.76" size="1.778" layer="95" font="vector" rot="R90" align="bottom-center"/>
+<attribute name="VALUE" x="204.724" y="111.76" size="1.778" layer="96" font="vector" rot="R90" align="top-center"/>
 </instance>
-<instance part="ICSP" gate="G$1" x="228.6" y="99.06" smashed="yes"/>
+<instance part="ICSP" gate="G$1" x="233.68" y="99.06" smashed="yes"/>
+<instance part="R4" gate="G$1" x="172.72" y="124.46" smashed="yes" rot="R90">
+<attribute name="NAME" x="171.196" y="124.46" size="1.778" layer="95" font="vector" rot="R90" align="bottom-center"/>
+<attribute name="VALUE" x="174.244" y="124.46" size="1.778" layer="96" font="vector" rot="R90" align="top-center"/>
+</instance>
+<instance part="R5" gate="G$1" x="167.64" y="139.7" smashed="yes">
+<attribute name="NAME" x="167.64" y="141.224" size="1.778" layer="95" font="vector" align="bottom-center"/>
+<attribute name="VALUE" x="167.64" y="138.176" size="1.778" layer="96" font="vector" align="top-center"/>
+</instance>
+<instance part="C2" gate="G$1" x="30.48" y="109.22" smashed="yes">
+<attribute name="NAME" x="32.004" y="112.141" size="1.778" layer="95" font="vector"/>
+<attribute name="VALUE" x="32.004" y="107.061" size="1.778" layer="96" font="vector"/>
+</instance>
+<instance part="C3" gate="G$1" x="20.32" y="109.22" smashed="yes">
+<attribute name="NAME" x="21.844" y="112.141" size="1.778" layer="95" font="vector"/>
+<attribute name="VALUE" x="21.844" y="107.061" size="1.778" layer="96" font="vector"/>
+</instance>
+<instance part="C4" gate="G$1" x="43.18" y="99.06" smashed="yes">
+<attribute name="NAME" x="44.704" y="101.981" size="1.778" layer="95" font="vector"/>
+<attribute name="VALUE" x="44.704" y="96.901" size="1.778" layer="96" font="vector"/>
+</instance>
+<instance part="C5" gate="G$1" x="147.32" y="157.48" smashed="yes">
+<attribute name="NAME" x="148.844" y="160.401" size="1.778" layer="95" font="vector"/>
+<attribute name="VALUE" x="148.844" y="155.321" size="1.778" layer="96" font="vector"/>
+</instance>
+<instance part="C6" gate="G$1" x="162.56" y="157.48" smashed="yes">
+<attribute name="NAME" x="164.084" y="160.401" size="1.778" layer="95" font="vector"/>
+<attribute name="VALUE" x="164.084" y="155.321" size="1.778" layer="96" font="vector"/>
+</instance>
+<instance part="GND3" gate="1" x="154.94" y="149.86" smashed="yes">
+<attribute name="VALUE" x="152.4" y="147.32" size="1.778" layer="96"/>
+</instance>
+<instance part="SUPPLY5" gate="G$1" x="147.32" y="167.64" smashed="yes">
+<attribute name="VALUE" x="147.32" y="170.434" size="1.778" layer="96" align="bottom-center"/>
+</instance>
+<instance part="+3V1" gate="G$1" x="162.56" y="170.18" smashed="yes">
+<attribute name="VALUE" x="160.02" y="165.1" size="1.778" layer="96" rot="R90"/>
+</instance>
+<instance part="R6" gate="G$1" x="60.96" y="104.14" smashed="yes">
+<attribute name="NAME" x="60.96" y="105.664" size="1.778" layer="95" font="vector" align="bottom-center"/>
+<attribute name="VALUE" x="60.96" y="102.616" size="1.778" layer="96" font="vector" align="top-center"/>
+</instance>
+<instance part="+3V2" gate="G$1" x="101.6" y="157.48" smashed="yes">
+<attribute name="VALUE" x="99.06" y="152.4" size="1.778" layer="96" rot="R90"/>
+</instance>
 </instances>
 <busses>
 </busses>
@@ -3646,11 +3737,9 @@ Two variants - one "with legs" (for hands-free fit on PCB) and another "without 
 <pinref part="GND1" gate="1" pin="GND"/>
 <pinref part="RESET" gate="G$1" pin="2"/>
 <wire x1="167.64" y1="86.36" x2="205.74" y2="86.36" width="0.1524" layer="91"/>
-<pinref part="ICSP" gate="G$1" pin="VSS(GND)"/>
-<wire x1="215.9" y1="101.6" x2="210.82" y2="101.6" width="0.1524" layer="91"/>
-<label x="210.82" y="101.6" size="1.778" layer="95"/>
-<wire x1="210.82" y1="101.6" x2="210.82" y2="86.36" width="0.1524" layer="91"/>
-<wire x1="210.82" y1="86.36" x2="205.74" y2="86.36" width="0.1524" layer="91"/>
+<pinref part="ICSP" gate="G$1" pin="GND"/>
+<wire x1="220.98" y1="93.98" x2="205.74" y2="93.98" width="0.1524" layer="91"/>
+<wire x1="205.74" y1="93.98" x2="205.74" y2="86.36" width="0.1524" layer="91"/>
 <junction x="205.74" y="86.36"/>
 </segment>
 <segment>
@@ -3661,63 +3750,81 @@ Two variants - one "with legs" (for hands-free fit on PCB) and another "without 
 <segment>
 <pinref part="PRESSURE-SENSOR" gate="G$1" pin="GND"/>
 <pinref part="GND4" gate="1" pin="GND"/>
-<wire x1="50.8" y1="109.22" x2="40.64" y2="109.22" width="0.1524" layer="91"/>
-<wire x1="40.64" y1="109.22" x2="40.64" y2="93.98" width="0.1524" layer="91"/>
+<wire x1="71.12" y1="109.22" x2="38.1" y2="109.22" width="0.1524" layer="91"/>
+<wire x1="30.48" y1="88.9" x2="30.48" y2="96.52" width="0.1524" layer="91"/>
+<pinref part="C4" gate="G$1" pin="2"/>
+<wire x1="43.18" y1="96.52" x2="38.1" y2="96.52" width="0.1524" layer="91"/>
+<junction x="30.48" y="96.52"/>
+<pinref part="C2" gate="G$1" pin="2"/>
+<wire x1="38.1" y1="96.52" x2="30.48" y2="96.52" width="0.1524" layer="91"/>
+<wire x1="30.48" y1="106.68" x2="30.48" y2="96.52" width="0.1524" layer="91"/>
+<junction x="30.48" y="96.52"/>
+<pinref part="C3" gate="G$1" pin="2"/>
+<wire x1="30.48" y1="96.52" x2="20.32" y2="96.52" width="0.1524" layer="91"/>
+<wire x1="20.32" y1="96.52" x2="20.32" y2="106.68" width="0.1524" layer="91"/>
+<wire x1="38.1" y1="109.22" x2="38.1" y2="96.52" width="0.1524" layer="91"/>
+<junction x="38.1" y="96.52"/>
+</segment>
+<segment>
+<pinref part="C5" gate="G$1" pin="2"/>
+<wire x1="147.32" y1="154.94" x2="147.32" y2="152.4" width="0.1524" layer="91"/>
+<pinref part="GND3" gate="1" pin="GND"/>
+<wire x1="147.32" y1="152.4" x2="154.94" y2="152.4" width="0.1524" layer="91"/>
+<pinref part="C6" gate="G$1" pin="2"/>
+<wire x1="154.94" y1="152.4" x2="162.56" y2="152.4" width="0.1524" layer="91"/>
+<wire x1="162.56" y1="152.4" x2="162.56" y2="154.94" width="0.1524" layer="91"/>
+<junction x="154.94" y="152.4"/>
 </segment>
 </net>
 <net name="MOSI/D0" class="0">
 <segment>
 <pinref part="IC1" gate="G$1" pin="PB0(MOSI)"/>
-<wire x1="154.94" y1="106.68" x2="182.88" y2="106.68" width="0.1524" layer="91"/>
+<wire x1="154.94" y1="106.68" x2="193.04" y2="106.68" width="0.1524" layer="91"/>
 <label x="160.02" y="106.68" size="1.778" layer="95"/>
-<wire x1="182.88" y1="106.68" x2="182.88" y2="99.06" width="0.1524" layer="91"/>
-<pinref part="ICSP" gate="G$1" pin="ICSP_DAT/PGD"/>
-<label x="195.58" y="99.06" size="1.778" layer="95"/>
-<wire x1="182.88" y1="99.06" x2="215.9" y2="99.06" width="0.1524" layer="91"/>
+<wire x1="193.04" y1="106.68" x2="193.04" y2="99.06" width="0.1524" layer="91"/>
+<pinref part="ICSP" gate="G$1" pin="MOSI"/>
+<wire x1="193.04" y1="99.06" x2="220.98" y2="99.06" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="CLK/SENSE" class="0">
 <segment>
 <pinref part="IC1" gate="G$1" pin="PB2(SCK/ADC1)"/>
-<wire x1="154.94" y1="101.6" x2="180.34" y2="101.6" width="0.1524" layer="91"/>
 <label x="160.02" y="101.6" size="1.778" layer="95"/>
-<wire x1="180.34" y1="101.6" x2="180.34" y2="96.52" width="0.1524" layer="91"/>
-<pinref part="ICSP" gate="G$1" pin="ICSP_CLK/PGC"/>
-<label x="195.58" y="96.52" size="1.778" layer="95"/>
-<wire x1="180.34" y1="96.52" x2="215.9" y2="96.52" width="0.1524" layer="91"/>
+<pinref part="ICSP" gate="G$1" pin="SCK"/>
+<wire x1="154.94" y1="101.6" x2="220.98" y2="101.6" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="PRESSURE-SENSOR" gate="G$1" pin="VOUT"/>
-<wire x1="43.18" y1="104.14" x2="50.8" y2="104.14" width="0.1524" layer="91"/>
+<pinref part="R6" gate="G$1" pin="1"/>
+<pinref part="C4" gate="G$1" pin="1"/>
+<wire x1="55.88" y1="104.14" x2="43.18" y2="104.14" width="0.1524" layer="91"/>
 <label x="43.18" y="104.14" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="LED" class="0">
 <segment>
 <pinref part="IC1" gate="G$1" pin="PB4(ADC2)"/>
-<wire x1="170.18" y1="96.52" x2="154.94" y2="96.52" width="0.1524" layer="91"/>
+<wire x1="182.88" y1="96.52" x2="154.94" y2="96.52" width="0.1524" layer="91"/>
 <label x="160.02" y="96.52" size="1.778" layer="95"/>
 <pinref part="LED1" gate="G$1" pin="C"/>
-<wire x1="170.18" y1="129.54" x2="170.18" y2="96.52" width="0.1524" layer="91"/>
+<wire x1="182.88" y1="96.52" x2="182.88" y2="129.54" width="0.1524" layer="91"/>
+<wire x1="182.88" y1="129.54" x2="187.96" y2="129.54" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="RST/D5" class="0">
 <segment>
-<pinref part="ICSP" gate="G$1" pin="VPP/MCLR"/>
-<wire x1="215.9" y1="106.68" x2="200.66" y2="106.68" width="0.1524" layer="91"/>
-<label x="203.2" y="106.68" size="1.778" layer="95"/>
 <pinref part="IC1" gate="G$1" pin="PB5(NRES)"/>
 <wire x1="154.94" y1="93.98" x2="157.48" y2="93.98" width="0.1524" layer="91"/>
 <pinref part="RESET" gate="G$1" pin="1"/>
 <wire x1="157.48" y1="86.36" x2="157.48" y2="93.98" width="0.1524" layer="91"/>
 <label x="160.02" y="93.98" size="1.778" layer="95"/>
-<wire x1="157.48" y1="93.98" x2="185.42" y2="93.98" width="0.1524" layer="91"/>
+<wire x1="157.48" y1="93.98" x2="203.2" y2="93.98" width="0.1524" layer="91"/>
 <junction x="157.48" y="93.98"/>
 <pinref part="R3" gate="G$1" pin="1"/>
-<wire x1="200.66" y1="106.68" x2="200.66" y2="109.22" width="0.1524" layer="91"/>
-<junction x="200.66" y="106.68"/>
-<wire x1="185.42" y1="93.98" x2="185.42" y2="106.68" width="0.1524" layer="91"/>
-<wire x1="185.42" y1="106.68" x2="200.66" y2="106.68" width="0.1524" layer="91"/>
+<wire x1="203.2" y1="93.98" x2="203.2" y2="96.52" width="0.1524" layer="91"/>
+<pinref part="ICSP" gate="G$1" pin="!RESET"/>
+<wire x1="203.2" y1="96.52" x2="203.2" y2="106.68" width="0.1524" layer="91"/>
+<wire x1="220.98" y1="96.52" x2="203.2" y2="96.52" width="0.1524" layer="91"/>
+<junction x="203.2" y="96.52"/>
 </segment>
 </net>
 <net name="VCC" class="0">
@@ -3732,74 +3839,60 @@ Two variants - one "with legs" (for hands-free fit on PCB) and another "without 
 </segment>
 <segment>
 <pinref part="POWER-SWITCH" gate="G$1" pin="D4"/>
-<wire x1="152.4" y1="134.62" x2="157.48" y2="134.62" width="0.1524" layer="91"/>
-<wire x1="157.48" y1="134.62" x2="157.48" y2="132.08" width="0.1524" layer="91"/>
+<wire x1="127" y1="147.32" x2="132.08" y2="147.32" width="0.1524" layer="91"/>
+<wire x1="132.08" y1="147.32" x2="132.08" y2="144.78" width="0.1524" layer="91"/>
 <pinref part="POWER-SWITCH" gate="G$1" pin="D3"/>
-<wire x1="157.48" y1="132.08" x2="152.4" y2="132.08" width="0.1524" layer="91"/>
-<wire x1="157.48" y1="132.08" x2="157.48" y2="129.54" width="0.1524" layer="91"/>
-<junction x="157.48" y="132.08"/>
+<wire x1="132.08" y1="144.78" x2="127" y2="144.78" width="0.1524" layer="91"/>
+<wire x1="132.08" y1="144.78" x2="132.08" y2="142.24" width="0.1524" layer="91"/>
+<junction x="132.08" y="144.78"/>
 <pinref part="POWER-SWITCH" gate="G$1" pin="D2"/>
-<wire x1="157.48" y1="129.54" x2="152.4" y2="129.54" width="0.1524" layer="91"/>
-<wire x1="157.48" y1="129.54" x2="157.48" y2="127" width="0.1524" layer="91"/>
-<junction x="157.48" y="129.54"/>
+<wire x1="132.08" y1="142.24" x2="127" y2="142.24" width="0.1524" layer="91"/>
+<wire x1="132.08" y1="142.24" x2="132.08" y2="139.7" width="0.1524" layer="91"/>
+<junction x="132.08" y="142.24"/>
 <pinref part="POWER-SWITCH" gate="G$1" pin="D1"/>
-<wire x1="157.48" y1="127" x2="152.4" y2="127" width="0.1524" layer="91"/>
-<wire x1="157.48" y1="134.62" x2="157.48" y2="137.16" width="0.1524" layer="91"/>
-<junction x="157.48" y="134.62"/>
+<wire x1="132.08" y1="139.7" x2="127" y2="139.7" width="0.1524" layer="91"/>
+<wire x1="132.08" y1="147.32" x2="132.08" y2="154.94" width="0.1524" layer="91"/>
+<junction x="132.08" y="147.32"/>
 <pinref part="SUPPLY3" gate="G$1" pin="VCC"/>
 </segment>
 <segment>
 <pinref part="PRESSURE-SENSOR" gate="G$1" pin="VCC"/>
 <pinref part="SUPPLY4" gate="G$1" pin="VCC"/>
-<wire x1="50.8" y1="114.3" x2="40.64" y2="114.3" width="0.1524" layer="91"/>
-<wire x1="40.64" y1="114.3" x2="40.64" y2="124.46" width="0.1524" layer="91"/>
+<pinref part="C2" gate="G$1" pin="1"/>
+<wire x1="71.12" y1="114.3" x2="30.48" y2="114.3" width="0.1524" layer="91"/>
+<pinref part="C3" gate="G$1" pin="1"/>
+<junction x="30.48" y="114.3"/>
+<wire x1="30.48" y1="114.3" x2="20.32" y2="114.3" width="0.1524" layer="91"/>
+<wire x1="30.48" y1="114.3" x2="30.48" y2="124.46" width="0.1524" layer="91"/>
+<junction x="30.48" y="114.3"/>
 </segment>
 <segment>
 <pinref part="R3" gate="G$1" pin="2"/>
 <pinref part="SUPPLY2" gate="G$1" pin="VCC"/>
-<wire x1="200.66" y1="119.38" x2="193.04" y2="119.38" width="0.1524" layer="91"/>
-<wire x1="193.04" y1="119.38" x2="193.04" y2="121.92" width="0.1524" layer="91"/>
-<pinref part="ICSP" gate="G$1" pin="VDD"/>
-<wire x1="215.9" y1="104.14" x2="193.04" y2="104.14" width="0.1524" layer="91"/>
-<label x="203.2" y="104.14" size="1.778" layer="95"/>
-<wire x1="193.04" y1="104.14" x2="193.04" y2="119.38" width="0.1524" layer="91"/>
-</segment>
-</net>
-<net name="VCC-IN" class="0">
-<segment>
-<pinref part="POWER-SWITCH" gate="G$1" pin="S3"/>
-<wire x1="132.08" y1="129.54" x2="127" y2="129.54" width="0.1524" layer="91"/>
-<wire x1="127" y1="129.54" x2="127" y2="132.08" width="0.1524" layer="91"/>
-<pinref part="POWER-SWITCH" gate="G$1" pin="S2"/>
-<wire x1="127" y1="132.08" x2="127" y2="134.62" width="0.1524" layer="91"/>
-<wire x1="127" y1="134.62" x2="127" y2="139.7" width="0.1524" layer="91"/>
-<wire x1="132.08" y1="132.08" x2="127" y2="132.08" width="0.1524" layer="91"/>
-<junction x="127" y="132.08"/>
-<pinref part="POWER-SWITCH" gate="G$1" pin="S1"/>
-<wire x1="132.08" y1="134.62" x2="127" y2="134.62" width="0.1524" layer="91"/>
-<junction x="127" y="134.62"/>
-<label x="121.92" y="139.7" size="1.778" layer="95"/>
-<pinref part="R1" gate="G$1" pin="1"/>
-<wire x1="127" y1="134.62" x2="116.84" y2="134.62" width="0.1524" layer="91"/>
-<wire x1="116.84" y1="134.62" x2="116.84" y2="127" width="0.1524" layer="91"/>
+<pinref part="ICSP" gate="G$1" pin="VCC"/>
+<wire x1="220.98" y1="104.14" x2="213.36" y2="104.14" width="0.1524" layer="91"/>
+<wire x1="213.36" y1="104.14" x2="213.36" y2="116.84" width="0.1524" layer="91"/>
+<wire x1="213.36" y1="116.84" x2="203.2" y2="116.84" width="0.1524" layer="91"/>
+<wire x1="213.36" y1="116.84" x2="213.36" y2="121.92" width="0.1524" layer="91"/>
+<junction x="213.36" y="116.84"/>
 </segment>
 <segment>
-<pinref part="HEADER" gate="G$1" pin="1"/>
-<wire x1="172.72" y1="142.24" x2="182.88" y2="142.24" width="0.1524" layer="91"/>
-<label x="170.18" y="142.24" size="1.778" layer="95"/>
+<pinref part="C5" gate="G$1" pin="1"/>
+<pinref part="SUPPLY5" gate="G$1" pin="VCC"/>
+<wire x1="147.32" y1="162.56" x2="147.32" y2="167.64" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="!EN!" class="0">
 <segment>
-<pinref part="HEADER" gate="G$1" pin="3"/>
-<wire x1="172.72" y1="139.7" x2="182.88" y2="139.7" width="0.1524" layer="91"/>
-<label x="170.18" y="139.7" size="1.778" layer="95"/>
+<pinref part="POWER-SWITCH" gate="G$1" pin="G"/>
+<wire x1="106.68" y1="139.7" x2="101.6" y2="139.7" width="0.1524" layer="91"/>
+<label x="101.6" y="139.7" size="1.778" layer="95"/>
+<pinref part="R1" gate="G$1" pin="2"/>
 </segment>
 <segment>
-<pinref part="POWER-SWITCH" gate="G$1" pin="G"/>
-<wire x1="132.08" y1="127" x2="127" y2="127" width="0.1524" layer="91"/>
-<label x="127" y="127" size="1.778" layer="95"/>
-<pinref part="R1" gate="G$1" pin="2"/>
+<wire x1="152.4" y1="139.7" x2="162.56" y2="139.7" width="0.1524" layer="91"/>
+<pinref part="R5" gate="G$1" pin="1"/>
+<label x="154.94" y="139.7" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="!CLEAR!" class="0">
@@ -3819,7 +3912,7 @@ Two variants - one "with legs" (for hands-free fit on PCB) and another "without 
 <segment>
 <pinref part="LED1" gate="G$1" pin="A"/>
 <pinref part="R2" gate="G$1" pin="1"/>
-<wire x1="180.34" y1="129.54" x2="177.8" y2="129.54" width="0.1524" layer="91"/>
+<wire x1="198.12" y1="129.54" x2="195.58" y2="129.54" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="LED-PWR" class="0">
@@ -3828,24 +3921,76 @@ Two variants - one "with legs" (for hands-free fit on PCB) and another "without 
 <wire x1="198.12" y1="139.7" x2="210.82" y2="139.7" width="0.1524" layer="91"/>
 <label x="200.66" y="139.7" size="1.778" layer="95"/>
 <wire x1="210.82" y1="139.7" x2="210.82" y2="129.54" width="0.1524" layer="91"/>
-<wire x1="210.82" y1="129.54" x2="190.5" y2="129.54" width="0.1524" layer="91"/>
+<wire x1="210.82" y1="129.54" x2="208.28" y2="129.54" width="0.1524" layer="91"/>
 <pinref part="R2" gate="G$1" pin="2"/>
+</segment>
+</net>
+<net name="N$2" class="0">
+<segment>
+<pinref part="HEADER" gate="G$1" pin="3"/>
+<wire x1="182.88" y1="139.7" x2="172.72" y2="139.7" width="0.1524" layer="91"/>
+<pinref part="R5" gate="G$1" pin="2"/>
 </segment>
 </net>
 <net name="MISO/INT" class="0">
 <segment>
 <pinref part="IC1" gate="G$1" pin="PB1(MISO)"/>
-<wire x1="154.94" y1="104.14" x2="187.96" y2="104.14" width="0.1524" layer="91"/>
+<wire x1="154.94" y1="104.14" x2="172.72" y2="104.14" width="0.1524" layer="91"/>
 <label x="160.02" y="104.14" size="1.778" layer="95"/>
-<wire x1="187.96" y1="104.14" x2="187.96" y2="93.98" width="0.1524" layer="91"/>
-<pinref part="ICSP" gate="G$1" pin="LVP"/>
-<wire x1="215.9" y1="93.98" x2="187.96" y2="93.98" width="0.1524" layer="91"/>
-<label x="195.58" y="93.98" size="1.778" layer="95"/>
+<pinref part="R4" gate="G$1" pin="1"/>
+<wire x1="172.72" y1="104.14" x2="172.72" y2="119.38" width="0.1524" layer="91"/>
+<wire x1="172.72" y1="104.14" x2="208.28" y2="104.14" width="0.1524" layer="91"/>
+<wire x1="208.28" y1="104.14" x2="208.28" y2="106.68" width="0.1524" layer="91"/>
+<junction x="172.72" y="104.14"/>
+<pinref part="ICSP" gate="G$1" pin="MISO"/>
+<wire x1="208.28" y1="106.68" x2="220.98" y2="106.68" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="INT" class="0">
+<segment>
+<pinref part="R4" gate="G$1" pin="2"/>
+<pinref part="HEADER" gate="G$1" pin="5"/>
+<wire x1="172.72" y1="129.54" x2="172.72" y2="137.16" width="0.1524" layer="91"/>
+<wire x1="172.72" y1="137.16" x2="182.88" y2="137.16" width="0.1524" layer="91"/>
+<label x="175.26" y="137.16" size="1.778" layer="95"/>
+</segment>
+</net>
+<net name="+3V3" class="0">
+<segment>
+<pinref part="HEADER" gate="G$1" pin="1"/>
+<wire x1="172.72" y1="142.24" x2="182.88" y2="142.24" width="0.1524" layer="91"/>
+<label x="172.72" y="142.24" size="1.778" layer="95"/>
+<wire x1="172.72" y1="142.24" x2="172.72" y2="165.1" width="0.1524" layer="91"/>
+<wire x1="172.72" y1="165.1" x2="162.56" y2="165.1" width="0.1524" layer="91"/>
+<pinref part="C6" gate="G$1" pin="1"/>
+<wire x1="162.56" y1="165.1" x2="162.56" y2="162.56" width="0.1524" layer="91"/>
+<pinref part="+3V1" gate="G$1" pin="+3V3"/>
+<wire x1="162.56" y1="165.1" x2="162.56" y2="167.64" width="0.1524" layer="91"/>
+<junction x="162.56" y="165.1"/>
 </segment>
 <segment>
-<pinref part="HEADER" gate="G$1" pin="5"/>
-<wire x1="172.72" y1="137.16" x2="182.88" y2="137.16" width="0.1524" layer="91"/>
-<label x="170.18" y="137.16" size="1.778" layer="95"/>
+<pinref part="POWER-SWITCH" gate="G$1" pin="S3"/>
+<wire x1="106.68" y1="142.24" x2="101.6" y2="142.24" width="0.1524" layer="91"/>
+<wire x1="101.6" y1="142.24" x2="101.6" y2="144.78" width="0.1524" layer="91"/>
+<pinref part="POWER-SWITCH" gate="G$1" pin="S2"/>
+<wire x1="101.6" y1="144.78" x2="101.6" y2="147.32" width="0.1524" layer="91"/>
+<wire x1="106.68" y1="144.78" x2="101.6" y2="144.78" width="0.1524" layer="91"/>
+<junction x="101.6" y="144.78"/>
+<pinref part="POWER-SWITCH" gate="G$1" pin="S1"/>
+<wire x1="106.68" y1="147.32" x2="101.6" y2="147.32" width="0.1524" layer="91"/>
+<junction x="101.6" y="147.32"/>
+<pinref part="R1" gate="G$1" pin="1"/>
+<wire x1="101.6" y1="147.32" x2="91.44" y2="147.32" width="0.1524" layer="91"/>
+<wire x1="91.44" y1="147.32" x2="91.44" y2="139.7" width="0.1524" layer="91"/>
+<pinref part="+3V2" gate="G$1" pin="+3V3"/>
+<wire x1="101.6" y1="147.32" x2="101.6" y2="154.94" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$3" class="0">
+<segment>
+<pinref part="PRESSURE-SENSOR" gate="G$1" pin="VOUT"/>
+<pinref part="R6" gate="G$1" pin="2"/>
+<wire x1="71.12" y1="104.14" x2="66.04" y2="104.14" width="0.1524" layer="91"/>
 </segment>
 </net>
 </nets>
@@ -3853,4 +3998,16 @@ Two variants - one "with legs" (for hands-free fit on PCB) and another "without 
 </sheets>
 </schematic>
 </drawing>
+<compatibility>
+<note version="8.2" severity="warning">
+Since Version 8.2, EAGLE supports online libraries. The ids
+of those online libraries will not be understood (or retained)
+with this version.
+</note>
+<note version="8.3" severity="warning">
+Since Version 8.3, EAGLE supports URNs for individual library
+assets (packages, symbols, and devices). The URNs of those assets
+will not be understood (or retained) with this version.
+</note>
+</compatibility>
 </eagle>
